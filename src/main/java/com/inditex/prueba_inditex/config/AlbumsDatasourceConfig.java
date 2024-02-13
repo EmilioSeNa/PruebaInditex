@@ -1,4 +1,4 @@
-package com.inditex.pruebaInditex.config;
+package com.inditex.prueba_inditex.config;
 
 import javax.sql.DataSource;
 

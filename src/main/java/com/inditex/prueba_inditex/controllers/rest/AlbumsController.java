@@ -1,4 +1,4 @@
-package com.inditex.pruebaInditex.controllers;
+package com.inditex.prueba_inditex.controllers.rest;
 
 import java.util.List;
 
@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inditex.pruebaInditex.dtos.AlbumDTO;
-import com.inditex.pruebaInditex.services.AlbumsService;
+import com.inditex.prueba_inditex.dto.AlbumDTO;
+import com.inditex.prueba_inditex.service.AlbumsService;
 
 /**
  *
- * A controller to return greeting text
+ * A controller to treatment albums
  */
 @RestController
 @RequestMapping("/api")
@@ -23,21 +23,21 @@ public class AlbumsController {
 	@Autowired
 	private AlbumsService photoStoreService;
 
-	@PostMapping("/savePhotoStore")
-	public ResponseEntity<String> savePhotoStore() {
-		photoStoreService.savePhotoStore();
+	@PostMapping("/saveAlbum")
+	public ResponseEntity<String> saveAlbum() {
+		photoStoreService.saveAlbum();
 		return ResponseEntity.ok("Save photo store data in database");
 	}
 
-	@GetMapping("/getPhotoStore")
-	public ResponseEntity<List<AlbumDTO>> getPhotoStore() {
-		List<AlbumDTO> lisAlbumDTOs = photoStoreService.getPhotoStore();
+	@GetMapping("/getAlbum")
+	public ResponseEntity<List<AlbumDTO>> getAlbum() {
+		List<AlbumDTO> lisAlbumDTOs = photoStoreService.getAlbum();
 		return ResponseEntity.ok(lisAlbumDTOs);
 	}
 
-	@GetMapping("/getPhotoStoreFromDatabase")
-	public ResponseEntity<List<AlbumDTO>> getPhotoStoreFromDatabase() {
-		List<AlbumDTO> dataFromDatabase = photoStoreService.getPhotoStoreFromDatabase();
+	@GetMapping("/getAlbumFromDatabase")
+	public ResponseEntity<List<AlbumDTO>> getAlbumFromDatabase() {
+		List<AlbumDTO> dataFromDatabase = photoStoreService.getAlbumFromDatabase();
 		return ResponseEntity.ok(dataFromDatabase);
 	}
 }

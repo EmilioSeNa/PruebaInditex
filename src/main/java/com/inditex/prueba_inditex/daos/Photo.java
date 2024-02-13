@@ -1,14 +1,14 @@
-package com.inditex.pruebaInditex.daos;
+package com.inditex.prueba_inditex.daos;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "PHOTOS")
-public class Photos {
+public class Photo {
 	@Id
 	private int id;
 
@@ -51,11 +51,20 @@ public class Photos {
 	public void setThumbnailUrl(String thumbnailUrl) {
 		this.thumbnailUrl = thumbnailUrl;
 	}
+	
+
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
 
 	@Override
 	public String toString() {
 		return "Photos [id=" + id + ", title=" + title + ", url=" + url + ", thumbnailUrl=" + thumbnailUrl + ", album="
-				+ album + "]";
+				+ album.getId() + "]";
 	}
 
 
