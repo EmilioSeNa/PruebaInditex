@@ -40,4 +40,8 @@ Para obtener los álbumes de los endpoint externos.
 @Get http://localhost:8080/api/getPhotoStoreFromDatabase
 Para obtener los álbumes de la base de datos de memoria H2.
 
+Test Unitarios integrados se pueden lanzar con el comando -> mvn clean install
+
+Se puede probar la cobertura del código con Jacoco.
+
 
