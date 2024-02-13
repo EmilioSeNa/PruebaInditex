@@ -51,7 +51,7 @@ class AlbumIntegrationTest {
 	}
 
 	@Test
-	void testGetPhotoStoreFromDatabaseEndpoint() throws Exception {
+	void testGetAlbumFromDatabaseEndpoint() throws Exception {
 		when(albumsService.getAlbumFromDatabase()).thenReturn(Collections.emptyList());
 
 		mockMvc.perform(MockMvcRequestBuilders.get("/api/getAlbumFromDatabase").contentType(MediaType.APPLICATION_JSON)

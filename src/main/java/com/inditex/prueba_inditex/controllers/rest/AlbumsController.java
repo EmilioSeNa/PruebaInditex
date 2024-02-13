@@ -21,23 +21,23 @@ import com.inditex.prueba_inditex.service.AlbumsService;
 public class AlbumsController {
 
 	@Autowired
-	private AlbumsService photoStoreService;
+	private AlbumsService albumService;
 
 	@PostMapping("/saveAlbum")
 	public ResponseEntity<String> saveAlbum() {
-		photoStoreService.saveAlbum();
+		albumService.saveAlbum();
 		return ResponseEntity.ok("Save photo store data in database");
 	}
 
 	@GetMapping("/getAlbum")
 	public ResponseEntity<List<AlbumDTO>> getAlbum() {
-		List<AlbumDTO> lisAlbumDTOs = photoStoreService.getAlbum();
+		List<AlbumDTO> lisAlbumDTOs = albumService.getAlbum();
 		return ResponseEntity.ok(lisAlbumDTOs);
 	}
 
 	@GetMapping("/getAlbumFromDatabase")
 	public ResponseEntity<List<AlbumDTO>> getAlbumFromDatabase() {
-		List<AlbumDTO> dataFromDatabase = photoStoreService.getAlbumFromDatabase();
+		List<AlbumDTO> dataFromDatabase = albumService.getAlbumFromDatabase();
 		return ResponseEntity.ok(dataFromDatabase);
 	}
 }

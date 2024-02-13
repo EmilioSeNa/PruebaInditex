@@ -37,7 +37,7 @@ Para guardar álbumes en la base de datos H2.
 @Get http://localhost:8080/api/getAlbum
 Para obtener los álbumes de los endpoint externos.
 
-@Get http://localhost:8080/api/getPhotoStoreFromDatabase
+@Get http://localhost:8080/api/getAlbumFromDatabase
 Para obtener los álbumes de la base de datos de memoria H2.
 
 Test Unitarios integrados se pueden lanzar con el comando -> mvn clean install
