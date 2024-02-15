@@ -4,12 +4,35 @@ Esta aplicación obtiene los album y los rellena con las fotos asociadas, a trav
 
 # Arquitectura
 
-He elegido una arquitectura por capas, debido a la homogeneidad y la sencillez de los requisitos de negocio es decir en está aplicación solo vamos a tratar albumes, con una capa de presentación (navegador web), capa de negocio (controller y services) y la última una capa de persistencia (repository).
+He elegido una arquitectura tipica MVC, debido a la sencillez de requisitos y a la homegeneidad de los requisitos, queremos guardar y obtener los albums, tanto desde base de datos cómo desde un endpoint externo.
 
 # Tecnologías
 He utilizado SpringBoot Vesion 3.1.7, Java 17, Junit 5, Jacoco 0.8.8, JPA y Base de datos H2.
 
-# Diseño
+# Patrones Diseño
+
+Inyección de Dependencias (Dependency Injection):
+
+Este patrón es fundamental en Spring Framework. A través de la anotación @Autowired que se utiliza para inyectar dependencias en los controladores y servicios de Spring.
+
+Transfer Object (DTO):
+
+Utilización DTOs (Data Transfer Objects) para transferir datos entre las diferentes capas de la aplicación. Los DTOs (por ejemplo, AlbumDTO y PhotoDTO) se utilizan para representar los datos que se envían entre el cliente y el servidor o entre diferentes componentes de la aplicación.
+
+Repositorio (Repository):
+
+Este es un patrón comúnmente utilizado en aplicaciones de persistencia de datos. Spring Data JPA implementa este patrón proporcionando repositorios que abstraen la capa de acceso a datos y proporcionan métodos para interactuar con la base de datos.
+
+Builder (Constructor de Objetos):
+
+El patrón Builder a menudo se usa para construir objetos complejos, especialmente en el proceso de construcción de DTOs u objetos de dominio. Este patrón ayuda a crear objetos paso a paso y proporciona una interfaz fluida para la construcción de objetos.
+
+Patrón DAO (Data Access Object):
+
+La combinación de Spring Data JPA y el repositorio proporciona una abstracción similar al patrón DAO. Este patrón separa la lógica de acceso a datos de la lógica de negocio y proporciona una capa de abstracción sobre la capa de persistencia. En este caso he decidido seguir manteniendo el nombre de las entidades para equipararlas a las tablas.
+
+# Estructura
+
 1- Controlador
 @PostMapping("/saveAlbum"): Esta anotación indica que el método saveAlbum() manejará las solicitudes HTTP POST dirigidas a la ruta "/api/saveAlbum".
 
@@ -38,7 +61,7 @@ Para guardar álbumes en la base de datos H2.
 Para obtener los álbumes de los endpoint externos.
 
 @Get http://localhost:8080/api/getAlbumFromDatabase
-Para obtener los álbumes de la base de datos de memoria H2.
+Obtiene los álbumes de la base de datos de memoria H2.
 
 Test Unitarios integrados se pueden lanzar con el comando -> mvn clean install
 

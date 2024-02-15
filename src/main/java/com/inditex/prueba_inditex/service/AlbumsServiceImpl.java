@@ -1,5 +1,6 @@
 package com.inditex.prueba_inditex.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -29,30 +30,33 @@ public class AlbumsServiceImpl implements AlbumsService {
 	private AlbumMapper albumMapper;
 
 	public void saveAlbum() {
-		PhotoDTO[] photos = getPhotosFromExternalAPI();
-		AlbumDTO[] albums = getAlbumsFromExternalAPI();
-		Map<Integer, List<PhotoDTO>> photosByAlbumId = orderPhotosByAlbum(photos);
-		Arrays.stream(albums).forEach(albumDTO -> {
+		PhotoDTO[] photosDTO = getPhotosFromExternalAPI();
+		AlbumDTO[] albumsDTO = getAlbumsFromExternalAPI();
+		List<Album> albumsList = new ArrayList<>();
+		Map<Integer, List<PhotoDTO>> photosByAlbumId = orderPhotosByAlbum(photosDTO);
+		Arrays.stream(albumsDTO).forEach(albumDTO -> {
 			List<PhotoDTO> photosForAlbum = photosByAlbumId.getOrDefault(albumDTO.getId(), Collections.emptyList());
 			Album album = albumMapper.toAlbum(albumDTO);
 			photosForAlbum.forEach(photoDTO -> {
 				Photo photo = albumMapper.toPhoto(photoDTO);
 				album.addPhoto(photo);
+				albumsList.add(album);
 			});
-			albumRepository.save(album);
+			
 		});
+		albumRepository.saveAll(albumsList);
 	}
 
 	public List<AlbumDTO> getAlbum() {
-		PhotoDTO[] photos = getPhotosFromExternalAPI();
-		AlbumDTO[] albums = getAlbumsFromExternalAPI();
-		Map<Integer, List<PhotoDTO>> photosByAlbumId = orderPhotosByAlbum(photos);
-		Arrays.stream(albums).forEach(albumDTO -> {
+		PhotoDTO[] photosDTO = getPhotosFromExternalAPI();
+		AlbumDTO[] albumsDTO = getAlbumsFromExternalAPI();
+		Map<Integer, List<PhotoDTO>> photosByAlbumId = orderPhotosByAlbum(photosDTO);
+		Arrays.stream(albumsDTO).forEach(albumDTO -> {
 			List<PhotoDTO> photosForAlbum = photosByAlbumId.getOrDefault(albumDTO.getId(), Collections.emptyList());
 			albumDTO.setListPhotos(photosForAlbum);
 		});
 
-		return Arrays.asList(albums);
+		return Arrays.asList(albumsDTO);
 	}
 
 	public List<AlbumDTO> getAlbumFromDatabase() {

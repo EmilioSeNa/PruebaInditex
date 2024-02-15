@@ -52,7 +52,7 @@ public class AlbumServiceTest {
 		when(albumMapper.toPhoto(any(PhotoDTO.class))).thenReturn(TestUtils.getListMockPhoto().get(0));
 		albumsService.saveAlbum();
 
-		verify(albumRepository, times(albums.length)).save(any());
+		verify(albumRepository, times(1)).saveAll(any());
 	}
 
 	@Test
